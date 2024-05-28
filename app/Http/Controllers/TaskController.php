@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        return view('task.index');
+
+        $tasks = Task::with('employer')->latest()->simplePaginate(3);
+        return view('task.index', [
+            'tasks' => $tasks
+        ]);
     }
 
-    public function show()
+    public function show(Task $task)
     {
-        return view('task.show');
+
+        return view('task.show', ['task' => $task ]);
     }
 
     public function create()
@@ -23,12 +30,21 @@ class TaskController extends Controller
 
     public function store()
     {
-        dd('Cadastrar');
+        request()->validate([
+            'title' => request('title'),
+            'salary' => request('salary')
+        ]);
+
+        Task::create([
+            'title' => request('title'),
+            'salary' => request('salary'),
+            'employer_id' => 1
+        ]);
     }
 
-    public function edit()
+    public function edit(Task $task)
     {
-        return view('task.edit');
+        return view('task.edit', ['task' => $task ]);
     }
 
     public function update()

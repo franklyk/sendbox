@@ -2,25 +2,32 @@
     <x-slot:heading>
         Task Page
     </x-slot:heading>
-{{-- 
+
     <div class="space-y-4">
-        @foreach ($jobs as $job)
-            <a href="/jobList/{{ $job['id'] }}" class="block border border-gray-200 px-4 py-6 rounded-lg">
+        
+        @foreach ($tasks as $task)
+        {{-- {{dd($task->id)}} --}}
+            <a href="/task/{{ $task->id }}" class="block border border-gray-200 px-4 py-6 rounded-lg">
                 @if ('employer')
-                    {{ $job->employer->name }}
+                    <div class="font-bold text-blue-500 text-sm">
+                        {{ $task->employer->name }}
+                    </div>
                 @endif
-                <div class="font-bold text-blue-500 text-sm">
-                    {{ $job->employer->name }}
-                </div>
+
                 <div>
-                    <strong>{{ $job['title'] }}</strong> Pays {{ $job['salary'] }} per year.
+                    <p>
+                        <strong>{{ $task->title }}</strong>
+                    </p>
+                    <p>
+                        Pays {{ $task->salary }} per year.
+                    </p>
                 </div>
             </a>
         @endforeach
 
         <div>
-            {{ $jobs->links() }}
-        </div> --}}
+            {{ $tasks->links() }}
+        </div>
 
     </div>
 </x-layout>
