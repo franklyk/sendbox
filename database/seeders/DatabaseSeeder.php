@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(TaskSeeder::class);
+        
+        $this->call(EmployerSeeder::class);
+        
+        $this->call(UserSeeder::class);
 
     }
 }

@@ -9,9 +9,11 @@
             This job pays {{ $task->salary }} per year.
         </p>
     </div>
-    <p>
-        <x-button href="/task/{{ $task->id }}/edit">Edit task</x-button>
-    </p>
-    {{-- @can('edit-job', $jobList)
-    @endcan --}}
+    {{-- @can('edit-task', $task) utilizando Gate --}}
+    {{-- Utilizando policy --}}
+    @can('edit', $task)
+        <p>
+            <x-button href="/task/{{ $task->id }}/edit">Edit task</x-button>
+        </p>
+    @endcan
 </x-layout>

@@ -4,9 +4,7 @@
     </x-slot:heading>
 
     <div class="space-y-4">
-        
         @foreach ($tasks as $task)
-        {{-- {{dd($task->id)}} --}}
             <a href="/task/{{ $task->id }}" class="block border border-gray-200 px-4 py-6 rounded-lg">
                 @if ('employer')
                     <div class="font-bold text-blue-500 text-sm">
@@ -15,6 +13,9 @@
                 @endif
 
                 <div>
+                    <p>
+                        <strong>ID: {{$task->id}}</strong>
+                    </p>
                     <p>
                         <strong>{{ $task->title }}</strong>
                     </p>

@@ -9,14 +9,25 @@ Route::get('/', function () {
     return view('home');
 });
 
-// Route::resource('task', TaskController::class);
+// Route::resource('/task', TaskController::class)->only(['index', 'show']);
+// Route::resource('/task', TaskController::class)->except(['index', 'show'])->middleware('auth');
+// Route::resource('/task', TaskController::class)->middleware('auth');
 
 
 Route::get('/task', [TaskController::class, 'index']);
-Route::get('/task/{task}', [TaskController::class, 'show']);
 Route::get('/task-create', [TaskController::class, 'create']);
-Route::post('/task', [TaskController::class, 'store']);
-Route::get('/task/{task}/edit', [TaskController::class, 'edit']);
+Route::post('/task', [TaskController::class, 'store'])->middleware('auth');
+Route::get('/task/{task}', [TaskController::class, 'show']);
+
+
+// Route::get('/task/{task}/edit', [TaskController::class, 'edit'])->middleware(['auth', 'can:edit-task,task']);
+Route::get('/task/{task}/edit', [TaskController::class, 'edit'])
+    ->middleware('auth')
+
+    // ->can('edit-task', 'task'); desta forma utiliza-se o Gate método
+    ->can('edit', 'task'); //desta forma utilizamos políticas (policies/TaskPolicy)
+
+
 Route::patch('/task/{task}', [TaskController::class, 'update']);
 Route::delete('/task/{task}', [TaskController::class, 'destroy']);
 
