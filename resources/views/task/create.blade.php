@@ -16,9 +16,9 @@
                     <x-form-field>
 
                         <x-form-label for="title">{{ __('Title') }}</x-form-label>
+                        <x-form-input name="title" id="title" placeholder="CEO" required />
 
                         <div class="mt-2">
-                            <x-form-input name="title" id="title" placeholder="CEO" required />
                             <x-form-error name="title" />
                         </div>
 
@@ -27,8 +27,8 @@
                     <x-form-field>
                         <x-form-label for="salary">{{ __('Salary') }}</x-form-label>
 
+                        <x-form-input name="salary" id="salary" placeholder="$ 50.000,00 USD" required />
                         <div class="mt-2">
-                            <x-form-input name="salary" id="salary" placeholder="$ 50.000,00 USD" required />
                             <x-form-error name="salary" />
                         </div>
                     </x-form-field>

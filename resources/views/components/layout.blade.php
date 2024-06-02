@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/images/icon/favicon.ico" type="image/x-icon">
 
-    @vite('resources/css/app.css')
+    @vite( 'resources/css/app.css', 'resources/js/app.js')
 
     <title>{{ env('APP_NAME') }}</title>
 
@@ -25,7 +25,7 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
+                            <x-nav-link href="/" :active="request()->is('/')"><i class="bi bi-house"></i> Home</x-nav-link>
                             <x-nav-link href="/task" :active="request()->is('task')">Tasks</x-nav-link>
 
                         </div>
@@ -43,7 +43,7 @@
                         <form action="/logout" method="POST">
                             @csrf
 
-                            <x-btn-info type="submit">{{ __('Log out')}}</x-btn-info>
+                            <x-btn-info type="submit">{{ __('Log out') }}</x-btn-info>
                             {{-- <x-form-button>Log out</x-form-button> --}}
 
                         </form>
@@ -59,8 +59,7 @@
     <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
-            <x-btn-success href="/task-create">{{ __('Create Task')}}</x-btn-success>
-            {{-- <x-button href="/task-create">Create Task</x-button> --}}
+            <x-btn-success href="/task-create">{{ __('Create Task') }}</x-btn-success>
         </div>
     </header>
 

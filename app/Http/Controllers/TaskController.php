@@ -79,8 +79,8 @@ class TaskController extends Controller
     public function update(Task $task)
     {
         request()->validate([
-            'title' => request(['required', 'min:3']),
-            'salary' => request(['required'])
+            'title' => ['required', 'min:3'],
+            'salary' => ['required']
         ]);
 
         $task->update([
