@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,7 +17,7 @@ class TaskPosted extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Task $task)
     {
         //
     }
@@ -28,6 +29,7 @@ class TaskPosted extends Mailable
     {
         return new Envelope(
             subject: 'Task Posted',
+            from: 'admin@lojavirtual.com'
         );
     }
 
@@ -37,7 +39,7 @@ class TaskPosted extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.task-posted',
         );
     }
 

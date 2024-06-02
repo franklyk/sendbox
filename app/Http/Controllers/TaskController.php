@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TaskPosted;
 use App\Models\Employer;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
     public function index()
     {
 
-        $tasks = Task::with('employer')->simplePaginate(3);
+        $tasks = Task::with('employer')->latest()->simplePaginate(3);
         return view('task.index', [
             'tasks' => $tasks
         ]);
@@ -40,11 +42,16 @@ class TaskController extends Controller
             'salary' => ['required']
         ]);
 
-        Task::create([
+        $task = Task::create([
             'title' => request('title'),
             'salary' => request('salary'),
             'employer_id' => Auth::user()->id
         ]);
+
+        Mail::to($task->employer->user)->send(
+            new TaskPosted($task)
+        );
+        return redirect('/task');
     }
 
     public function edit(Task $task)

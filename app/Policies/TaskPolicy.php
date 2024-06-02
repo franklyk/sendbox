@@ -12,4 +12,8 @@ class TaskPolicy
     {
         return $task->employer->user->is($user);
     }
+    public function delete(User $user, Task $task)
+    {
+        return $task->employer->user->is($user);
+    }
 }

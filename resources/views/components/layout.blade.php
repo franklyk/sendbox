@@ -43,7 +43,8 @@
                         <form action="/logout" method="POST">
                             @csrf
 
-                            <x-form-button>Log out</x-form-button>
+                            <x-btn-info type="submit">{{ __('Log out')}}</x-btn-info>
+                            {{-- <x-form-button>Log out</x-form-button> --}}
 
                         </form>
                     @endauth
@@ -58,7 +59,8 @@
     <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
-            <x-button href="/task-create">Create Task</x-button>
+            <x-btn-success href="/task-create">{{ __('Create Task')}}</x-btn-success>
+            {{-- <x-button href="/task-create">Create Task</x-button> --}}
         </div>
     </header>
 
