@@ -2,7 +2,7 @@
     <x-slot:heading>
         Create Task
     </x-slot:heading>
-
+    
     <form method="POST" action="/task">
         @csrf
 
@@ -40,8 +40,8 @@
         </div>
 
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <a href="/task" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-            <x-form-button>Save</x-form-button>
+            <x-btn-warning href="/task">Cancel</x-btn-warning>
+            <x-btn-info type="submit">Save</x-btn-info>
 
         </div>
     </form>

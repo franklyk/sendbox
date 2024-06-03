@@ -1,10 +1,10 @@
 <h2>
-    {{ $task->title}}
+    {{ $task->title }}
 </h2>
 
 <p>
     Hello World
 </p>
 <p>
-    <a href="{{ url('/task/' . $task->id) }}">Testar o link</a>
+    <a href="{{ url('/task' . '/' . $task->id) }}">Testar o link</a>
 </p>

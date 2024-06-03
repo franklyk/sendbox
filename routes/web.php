@@ -3,16 +3,23 @@
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TaskController;
+use App\Jobs\TranslateJob;
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
+
+Route::get('/test', function () {
+
+    $job = Task::first();
+
+   TranslateJob::dispatch($job);
+
+    return 'Done';
 });
 
-// Route::resource('/task', TaskController::class)->only(['index', 'show']);
-// Route::resource('/task', TaskController::class)->except(['index', 'show'])->middleware('auth');
-// Route::resource('/task', TaskController::class)->middleware('auth');
 
+
+Route::view('/', 'home');
 
 Route::get('/task', [TaskController::class, 'index']);
 Route::get('/task-create', [TaskController::class, 'create']);

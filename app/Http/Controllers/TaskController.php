@@ -48,7 +48,7 @@ class TaskController extends Controller
             'employer_id' => Auth::user()->id
         ]);
 
-        Mail::to($task->employer->user)->send(
+        Mail::to($task->employer->user)->queue(
             new TaskPosted($task)
         );
         return redirect('/task');
@@ -93,8 +93,8 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
-        $task->delete();
 
+        $task->delete();
         return redirect('/task');
     }
 }
